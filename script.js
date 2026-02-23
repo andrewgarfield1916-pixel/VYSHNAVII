@@ -1,8 +1,6 @@
-// ---------------------------
-// Lock screen logic
-// ---------------------------
+// LOCK SCREEN -------------------------------------
 
-const DOB_CORRECT = "29/09/2005";
+const DOB_CORRECT = "25/02/2006";
 
 const lockScreen = document.getElementById("lock-screen");
 const dobInput = document.getElementById("dob-input");
@@ -11,16 +9,14 @@ const lockMessage = document.getElementById("lock-message");
 
 const leafletSection = document.getElementById("leaflet-transition");
 const leafletWrapper = document.querySelector(".leaflet-wrapper");
-
 const mainExperience = document.getElementById("main-experience");
 
-// Background music controls (optional)
+// optional audio
 const bgMusic = document.getElementById("bg-music");
 const audioToggleBtn = document.getElementById("audio-toggle");
-
 let musicEnabled = false;
 
-// Auto format DD/MM/YYYY
+// auto-format DD/MM/YYYY
 dobInput.addEventListener("input", (e) => {
   let value = e.target.value.replace(/[^\d]/g, "");
   if (value.length >= 3 && value.length <= 4) {
@@ -31,19 +27,16 @@ dobInput.addEventListener("input", (e) => {
   e.target.value = value.slice(0, 10);
 });
 
+dobInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") unlockBtn.click();
+});
+
 unlockBtn.addEventListener("click", () => {
   const entered = dobInput.value.trim();
-
   if (entered === DOB_CORRECT) {
     handleCorrectUnlock();
   } else {
     handleWrongUnlock();
-  }
-});
-
-dobInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    unlockBtn.click();
   }
 });
 
@@ -59,10 +52,8 @@ function handleWrongUnlock() {
 function handleCorrectUnlock() {
   lockMessage.textContent = "Unlocked 💛";
   lockMessage.style.color = "#166534";
-
   unlockBtn.classList.add("unlock-glow");
 
-  // After small delay, fade out and trigger leaflet animation
   setTimeout(() => {
     lockScreen.classList.add("fade-out");
   }, 400);
@@ -77,12 +68,10 @@ function startLeafletTransition() {
   leafletSection.classList.remove("leaflet-hidden");
   leafletSection.classList.add("leaflet-active");
 
-  // Trigger leaflet open animation
   requestAnimationFrame(() => {
     leafletWrapper.classList.add("leaflet-open");
   });
 
-  // After animation, show main experience
   setTimeout(() => {
     leafletSection.classList.remove("leaflet-active");
     leafletSection.classList.add("leaflet-hidden");
@@ -92,14 +81,11 @@ function startLeafletTransition() {
   }, 1200);
 }
 
-// ---------------------------
-// Audio toggle (if audio file added)
-// ---------------------------
+// AUDIO TOGGLE ------------------------------------
 
 if (audioToggleBtn) {
   audioToggleBtn.addEventListener("click", () => {
     if (!bgMusic) return;
-
     if (!musicEnabled) {
       bgMusic
         .play()
@@ -107,9 +93,7 @@ if (audioToggleBtn) {
           musicEnabled = true;
           audioToggleBtn.textContent = "🔊";
         })
-        .catch(() => {
-          // Autoplay might be blocked; ignore
-        });
+        .catch(() => {});
     } else {
       bgMusic.pause();
       musicEnabled = false;
@@ -118,9 +102,7 @@ if (audioToggleBtn) {
   });
 }
 
-// ---------------------------
-// Scroll reveal using IntersectionObserver
-// ---------------------------
+// SCROLL REVEAL -----------------------------------
 
 const revealElements = document.querySelectorAll(".scroll-reveal");
 
@@ -133,22 +115,16 @@ const io = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.25
-  }
+  { threshold: 0.25 }
 );
 
 revealElements.forEach((el) => io.observe(el));
 
-// ---------------------------
-// Parallax effect for memory cards
-// ---------------------------
+// PARALLAX CARDS ----------------------------------
 
 const parallaxCards = document.querySelectorAll(".parallax-card");
 
 window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY || window.pageYOffset;
-
   parallaxCards.forEach((card) => {
     const rect = card.getBoundingClientRect();
     const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
@@ -157,9 +133,7 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// ---------------------------
-// Interactive Questions Logic
-// ---------------------------
+// QUESTIONS ---------------------------------------
 
 const questionCards = document.querySelectorAll(".question-card");
 const prevBtn = document.getElementById("prev-question");
@@ -174,22 +148,17 @@ let q1Answered = false;
 let q2Answered = false;
 let q3Interacted = false;
 
-// Question 1 options + text
 const q1Options = document.querySelectorAll("[data-q1-option]");
 const q1Text = document.getElementById("q1-text");
 
-// Question 2
 const q2Options = document.querySelectorAll("[data-q2-option]");
 
-// Question 3
 const annoySlider = document.getElementById("annoy-slider");
 const annoyOutput = document.getElementById("annoy-output");
 
-// Helper to show current step
 function updateStepView() {
   questionCards.forEach((card) => {
-    const step = Number(card.dataset.step);
-    card.classList.toggle("active-question", step === currentStep);
+    card.classList.toggle("active-question", Number(card.dataset.step) === currentStep);
   });
 
   stepLabel.textContent = `Question ${currentStep} of ${totalSteps}`;
@@ -199,7 +168,6 @@ function updateStepView() {
   });
 
   prevBtn.style.visibility = currentStep === 1 ? "hidden" : "visible";
-
   validateCurrentStep();
 }
 
@@ -213,27 +181,18 @@ function disableNext() {
 
 function validateCurrentStep() {
   if (currentStep === 1) {
-    if (q1Answered && q1Text.value.trim().length > 0) {
-      enableNext();
-    } else {
-      disableNext();
-    }
+    if (q1Answered && q1Text.value.trim().length > 0) enableNext();
+    else disableNext();
   } else if (currentStep === 2) {
-    if (q2Answered) {
-      enableNext();
-    } else {
-      disableNext();
-    }
+    if (q2Answered) enableNext();
+    else disableNext();
   } else if (currentStep === 3) {
-    if (q3Interacted) {
-      enableNext();
-    } else {
-      disableNext();
-    }
+    if (q3Interacted) enableNext();
+    else disableNext();
   }
 }
 
-// Question 1 interaction
+// Q1
 q1Options.forEach((btn) => {
   btn.addEventListener("click", () => {
     q1Options.forEach((b) => b.classList.remove("selected"));
@@ -244,13 +203,11 @@ q1Options.forEach((btn) => {
 });
 
 q1Text.addEventListener("input", () => {
-  if (q1Text.value.trim().length > 0) {
-    q1Answered = true;
-  }
+  if (q1Text.value.trim().length > 0) q1Answered = true;
   validateCurrentStep();
 });
 
-// Question 2 interaction
+// Q2
 q2Options.forEach((btn) => {
   btn.addEventListener("click", () => {
     q2Options.forEach((b) => b.classList.remove("selected"));
@@ -260,7 +217,7 @@ q2Options.forEach((btn) => {
   });
 });
 
-// Question 3 interaction
+// Q3
 if (annoySlider) {
   annoySlider.addEventListener("input", (e) => {
     annoyOutput.textContent = e.target.value;
@@ -269,7 +226,6 @@ if (annoySlider) {
   });
 }
 
-// Navigation buttons
 prevBtn.addEventListener("click", () => {
   if (currentStep > 1) {
     currentStep--;
@@ -284,26 +240,19 @@ nextBtn.addEventListener("click", () => {
     currentStep++;
     updateStepView();
   } else {
-    // All questions answered, trigger confetti and scroll to fun section
     triggerConfetti();
     scrollToFunSection();
   }
 });
 
-// Scroll to fun section
 function scrollToFunSection() {
   const funSection = document.querySelector(".fun-section");
-  if (!funSection) return;
-
-  funSection.scrollIntoView({ behavior: "smooth" });
+  if (funSection) funSection.scrollIntoView({ behavior: "smooth" });
 }
 
-// Initialize step view
 updateStepView();
 
-// ---------------------------
-// Fun Reactions + Confetti
-// ---------------------------
+// FUN REACTIONS + CONFETTI ------------------------
 
 const reactionArea = document.getElementById("reaction-area");
 const confettiCanvas = document.getElementById("confetti-canvas");
@@ -319,7 +268,6 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Simple confetti burst
 function createConfettiBurst(x, y) {
   const colors = ["#f97316", "#22c55e", "#3b82f6", "#facc15", "#ec4899"];
 
@@ -336,20 +284,17 @@ function createConfettiBurst(x, y) {
     });
   }
 
-  if (!confettiAnimationFrame) {
-    animateConfetti();
-  }
+  if (!confettiAnimationFrame) animateConfetti();
 }
 
 function animateConfetti() {
   confettiAnimationFrame = requestAnimationFrame(animateConfetti);
-
   ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
 
   confettiPieces.forEach((piece, index) => {
     piece.x += piece.dx;
     piece.y += piece.dy;
-    piece.dy += 0.12; // gravity
+    piece.dy += 0.12;
     piece.life++;
 
     ctx.fillStyle = piece.color;
@@ -372,7 +317,6 @@ function triggerConfetti() {
   createConfettiBurst(window.innerWidth / 2, window.innerHeight / 3);
 }
 
-// Click reactions in fun section
 if (reactionArea) {
   const reactionEmojis = ["💛", "🤣", "🥹", "😌", "💫", "🐼", "✨"];
 
@@ -387,16 +331,10 @@ if (reactionArea) {
       reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
     emoji.style.left = `${x}px`;
     emoji.style.top = `${y}px`;
-
     reactionArea.appendChild(emoji);
 
-    // Small confetti burst around click area
-    const globalX = e.clientX;
-    const globalY = e.clientY;
-    createConfettiBurst(globalX, globalY);
+    createConfettiBurst(e.clientX, e.clientY);
 
-    setTimeout(() => {
-      emoji.remove();
-    }, 1300);
+    setTimeout(() => emoji.remove(), 1300);
   });
 }
