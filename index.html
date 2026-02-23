@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>Happy Birthday, Vyshnavii 💛</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Optional background audio (muted by default, can be toggled) -->
+  <audio id="bg-music" loop preload="auto">
+    <!-- Replace with your own file if you want music -->
+    <!-- <source src="music.mp3" type="audio/mpeg" /> -->
+  </audio>
+
+  <!-- STEP 1 — ENTRY LOCK SCREEN -->
+  <section id="lock-screen" class="view active-view">
+    <div class="lock-bg">
+      <div class="floating-orb orb-1"></div>
+      <div class="floating-orb orb-2"></div>
+      <div class="floating-orb orb-3"></div>
+      <div class="particle-layer"></div>
+    </div>
+
+    <div class="lock-card glass-card">
+      <h1 class="lock-title">Do you really want to see what’s inside? 🎁</h1>
+      <p class="lock-subtitle">
+        Enter my <span class="highlight">PUTTINA ROJU</span> to continue.
+      </p>
+
+      <div class="lock-input-group">
+        <label for="dob-input" class="visually-hidden">Birthday</label>
+        <input
+          id="dob-input"
+          type="text"
+          autocomplete="off"
+          placeholder="DD/MM/YYYY"
+          maxlength="10"
+        />
+      </div>
+
+      <button id="unlock-btn" class="primary-btn">
+        Unlock 💌
+      </button>
+
+      <p id="lock-message" class="lock-message"></p>
+    </div>
+  </section>
+
+  <!-- STEP 2 — LEAFLET OPENING TRANSITION -->
+  <section id="leaflet-transition" class="view leaflet-hidden">
+    <div class="leaflet-wrapper">
+      <div class="leaflet-panel left-panel"></div>
+      <div class="leaflet-panel right-panel"></div>
+      <div class="light-reveal"></div>
+    </div>
+  </section>
+
+  <!-- MAIN EXPERIENCE (STEPS 3–8) -->
+  <main id="main-experience" class="view main-hidden">
+    <!-- STEP 3 — HERO / BIRTHDAY -->
+    <section class="hero-section">
+      <div class="hero-bg-layer">
+        <div class="floating-heart heart-1"></div>
+        <div class="floating-heart heart-2"></div>
+        <div class="floating-heart heart-3"></div>
+      </div>
+
+      <header class="top-bar">
+        <div class="brand-dot"></div>
+        <span class="brand-text">
+          A tiny birthday universe for Vyshnavii
+        </span>
+        <button id="audio-toggle" class="audio-toggle" aria-label="Toggle music">
+          🔇
+        </button>
+      </header>
+
+      <div class="hero-content">
+        <div class="hero-text scroll-reveal">
+          <p class="eyebrow">Some days quietly become special</p>
+          <h1 class="hero-title">Happy Birthday, Vyshnavii 🎂</h1>
+          <p class="hero-subtitle">
+            This little corner of the internet exists only because you do,
+            Vyshnavii.
+          </p>
+          <p class="hero-subtext">
+            It’s built out of late night talks, random conversations, and all
+            those tiny moments that somehow started to matter.
+          </p>
+        </div>
+
+        <div class="hero-visual scroll-reveal">
+          <div class="panda-stack">
+            <div class="panda panda-top">🐼</div>
+            <div class="panda panda-mid">🎈</div>
+            <div class="panda panda-bottom">🐼</div>
+          </div>
+          <div class="confetti confetti-1"></div>
+          <div class="confetti confetti-2"></div>
+          <div class="confetti confetti-3"></div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <span class="scroll-line"></span>
+        <span class="scroll-text">Scroll to wander through us</span>
+      </div>
+    </section>
+
+    <!-- STEP 4 — STORY / MESSAGE SECTION -->
+    <section class="story-section">
+      <div class="section-inner">
+        <h2 class="section-heading scroll-reveal">
+          Little things I never say properly
+        </h2>
+        <p class="section-subtitle scroll-reveal">
+          No grand speeches. Just the quiet truths that sit between our chats.
+        </p>
+
+        <div class="story-grid">
+          <p class="story-text scroll-reveal">
+            Thank you for coming into my life, Vyshnavii. You didn’t knock, you
+            just kind of appeared—and somehow it felt right.
+          </p>
+          <p class="story-text scroll-reveal">
+            Some people just become important without asking for permission.
+            That’s what you did. Slowly, softly, and all at once.
+          </p>
+          <p class="story-text scroll-reveal">
+            You made ordinary days feel less ordinary, just by being a notification,
+            a “tell me what happened,” or a random “are you alive?” tease.
+          </p>
+          <p class="story-text scroll-reveal">
+            Late night talks, half-slept replies, dumb memes, serious rants —
+            none of it looks special from outside. But they became my favourite
+            “nothing much, just talking to you” kind of moments.
+          </p>
+          <p class="story-text scroll-reveal">
+            You became that person I can talk to about everything and nothing
+            at the same time. The kind of comfort that doesn’t need big
+            explanations.
+          </p>
+          <p class="story-text scroll-reveal">
+            I don’t know how long life keeps us in the same chapter, but as
+            long as this bond is here, I’m quietly grateful for it. For you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 5 — MEMORIES / IMAGES -->
+    <section class="memories-section">
+      <div class="section-inner">
+        <h2 class="section-heading scroll-reveal">
+          Tiny snapshots that feel like us
+        </h2>
+        <p class="section-subtitle scroll-reveal">
+          These don’t have to be perfect photos. Just the kind that drag you
+          back to a specific laugh, a specific day, a specific “you had to be
+          there”.
+        </p>
+
+        <div class="memory-grid">
+          <!-- CARD 1 -->
+          <article class="memory-card scroll-reveal parallax-card">
+            <div class="memory-image-wrapper">
+              <!-- Replace image1.jpg with your own file in /images -->
+              <img
+                src="images/image1.jpg"
+                alt="Memory 1 with Vyshnavii"
+                class="memory-image"
+              />
+            </div>
+            <div class="memory-meta">
+              <h3>That random “nothing special” day</h3>
+              <p>
+                The kind of day that looked normal to everyone else, but somehow
+                stuck because you were in it.
+              </p>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="memory-card scroll-reveal parallax-card">
+            <div class="memory-image-wrapper">
+              <!-- Replace image2.jpg with your own file in /images -->
+              <img
+                src="images/image2.jpg"
+                alt="Memory 2 with Vyshnavii"
+                class="memory-image"
+              />
+            </div>
+            <div class="memory-meta">
+              <h3>The laugh I still remember</h3>
+              <p>
+                One joke, one moment, and then that unstoppable laughter. You
+                have no idea how loud that memory still feels.
+              </p>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="memory-card scroll-reveal parallax-card">
+            <div class="memory-image-wrapper">
+              <!-- Replace image3.jpg with your own file in /images -->
+              <img
+                src="images/image3.jpg"
+                alt="Memory 3 with Vyshnavii"
+                class="memory-image"
+              />
+            </div>
+            <div class="memory-meta">
+              <h3>The calm in-between</h3>
+              <p>
+                No drama, no big story. Just the comfort of knowing you were
+                there. Those quiet things stayed too.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6 — INTERACTIVE QUESTIONS -->
+    <section class="questions-section">
+      <div class="section-inner">
+        <h2 class="section-heading scroll-reveal">
+          Okay, your turn, Vyshnavii
+        </h2>
+        <p class="section-subtitle scroll-reveal">
+          I built you this whole website. The bare minimum you can do is be a
+          little honest here.
+        </p>
+
+        <div class="question-stepper">
+          <div class="step-indicator">
+            <span id="step-label">Question 1 of 3</span>
+            <div class="step-dots">
+              <span class="dot dot-active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <!-- Question 1 -->
+          <div class="question-card active-question" data-step="1">
+            <h3>What is one thing you secretly like about me?</h3>
+            <p class="question-caption">
+              You’re not allowed to say “nothing” — that option does not exist.
+            </p>
+
+            <div class="options-grid">
+              <button class="option-chip" data-q1-option="Overthinking">
+                My overthinking
+              </button>
+              <button class="option-chip" data-q1-option="Humour">
+                My humour
+              </button>
+              <button class="option-chip" data-q1-option="Patience">
+                My patience
+              </button>
+              <button class="option-chip" data-q1-option="Chaos">
+                My chaos
+              </button>
+            </div>
+
+            <label class="question-label" for="q1-text">
+              Or something even more specific you’re brave enough to type:
+            </label>
+            <textarea
+              id="q1-text"
+              rows="3"
+              placeholder="This stays between us, promise."
+            ></textarea>
+
+            <p class="question-warning" id="q1-warning">
+              Tell me at least one thing before we move on 👀
+            </p>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="question-card" data-step="2">
+            <h3>When do you usually miss talking to me?</h3>
+            <p class="question-caption">
+              Be honest. I know you’ve noticed your own patterns too.
+            </p>
+
+            <div class="options-grid">
+              <button class="option-chip" data-q2-option="Night">
+                Late at night
+              </button>
+              <button class="option-chip" data-q2-option="Boredom">
+                Random boredom
+              </button>
+              <button class="option-chip" data-q2-option="Long day">
+                After a long day
+              </button>
+              <button class="option-chip teasing" data-q2-option="Never">
+                Never 😌
+              </button>
+            </div>
+
+            <p class="question-warning" id="q2-warning">
+              Pick at least one. Even if it’s the rude one.
+            </p>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="question-card" data-step="3">
+            <h3>How annoying am I, honestly?</h3>
+            <p class="question-caption">
+              Slider therapy. Move it with care, I have feelings (sometimes).
+            </p>
+
+            <div class="slider-row">
+              <span>Soft chill</span>
+              <input
+                type="range"
+                id="annoy-slider"
+                min="0"
+                max="100"
+                value="40"
+              />
+              <span>Full-time menace</span>
+            </div>
+
+            <div class="slider-value">
+              <span id="annoy-output">40</span>
+              <span>% adorable annoyance</span>
+            </div>
+
+            <p class="question-warning" id="q3-warning">
+              Move the slider at least once. I need fresh data.
+            </p>
+          </div>
+
+          <div class="question-footer">
+            <button
+              id="prev-question"
+              class="secondary-btn"
+              type="button"
+            >
+              Back
+            </button>
+            <button
+              id="next-question"
+              class="primary-btn disabled"
+              type="button"
+            >
+              Next ➝
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7 — FUN TEASING SECTION -->
+    <section class="fun-section">
+      <div class="section-inner">
+        <h2 class="section-heading scroll-reveal">
+          For every “😂😂”, there’s also this
+        </h2>
+        <p class="section-subtitle scroll-reveal">
+          Tap around and see what your chaos does to this page. No overthinking,
+          just click.
+        </p>
+
+        <div id="reaction-area" class="reaction-area">
+          <p class="reaction-hint">
+            Click / tap anywhere here. Imagine this is our chat box, but the
+            reactions escape into the screen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 8 — FINAL THANK YOU PAGE -->
+    <section class="final-section">
+      <div class="final-bg">
+        <div class="glow-orb glow-1"></div>
+        <div class="glow-orb glow-2"></div>
+      </div>
+
+      <div class="final-inner">
+        <div class="final-text-block">
+          <p class="final-lead scroll-reveal">
+            And one last thing…
+          </p>
+
+          <div class="final-lines">
+            <p class="final-line scroll-reveal">
+              Thank you for coming into my life, Vyshnavii.
+            </p>
+            <p class="final-line scroll-reveal">
+              Some conversations become habits.
+            </p>
+            <p class="final-line scroll-reveal">
+              Some people become comfort.
+            </p>
+            <p class="final-line scroll-reveal">
+              And somewhere along the way, you became both.
+            </p>
+            <p class="final-line scroll-reveal">
+              It feels a little strange saying this,
+            </p>
+            <p class="final-line scroll-reveal">
+              but I genuinely hope this bond stays alive for a very long time.
+            </p>
+          </div>
+
+          <p class="final-ending heartbeat">
+            Happy Birthday 💛
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
