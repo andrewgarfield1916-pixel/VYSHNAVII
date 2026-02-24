@@ -21,7 +21,7 @@ body {
 }
 
 /* VISIBILITY CLASSES */
-.main-hidden, .leaflet-hidden { display: none !important; }
+.main-hidden, .leaflet-hidden, .admin-hidden { display: none !important; }
 
 /* LOCK SCREEN */
 #lock-screen {
@@ -339,4 +339,90 @@ input[type=range] { flex: 1; accent-color: var(--accent-strong); }
     align-items: center;
   }
   .hero-visual { display: flex; justify-content: center; align-items: center; }
+}
+
+/* ADMIN PANEL */
+#admin-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+}
+.admin-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.admin-header h3 {
+  font-size: 1.2rem;
+}
+#close-admin {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-soft);
+}
+.admin-loading {
+  text-align: center;
+  color: var(--text-soft);
+  padding: 2rem;
+}
+
+/* HINT TEXT & DOB LABEL */
+.hint-text {
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  min-height: 1.2em;
+}
+.dob-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+.dob-input {
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  font-size: 1rem;
+  outline: none;
+  width: 160px;
+  text-align: center;
+}
+
+/* DOTS CONTAINER */
+.dots-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+.shake-it {
+  animation: shake 0.5s ease;
 }
