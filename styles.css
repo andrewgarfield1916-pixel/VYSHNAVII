@@ -179,3 +179,164 @@ input[type=range] { flex: 1; accent-color: var(--accent-strong); }
   .hero-h1 { font-size: 2.2rem; }
   .sec-h { font-size: 1.6rem; }
 }
+
+/* LOCK SCREEN BACKGROUND ORBS */
+.lock-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+  animation: float 6s ease-in-out infinite;
+}
+.orb-1 { width: 300px; height: 300px; background: var(--accent); top: -100px; left: -100px; }
+.orb-2 { width: 250px; height: 250px; background: #a5c8ff; top: 50%; right: -80px; animation-delay: -2s; }
+.orb-3 { width: 200px; height: 200px; background: #ffe69d; bottom: -60px; left: 30%; animation-delay: -4s; }
+.orb-4 { width: 180px; height: 180px; background: #c8f0d8; bottom: 10%; right: 20%; animation-delay: -1s; }
+
+/* HERO BACKGROUND */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.h-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: float 8s ease-in-out infinite;
+}
+.h-orb1 { width: 500px; height: 500px; background: var(--accent); top: -150px; right: -100px; }
+.h-orb2 { width: 400px; height: 400px; background: #c8e6ff; bottom: -100px; left: -80px; animation-delay: -3s; }
+.h-heart {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.4;
+  animation: float 5s ease-in-out infinite;
+}
+.hh1 { top: 20%; left: 10%; animation-delay: -1s; }
+.hh2 { top: 60%; right: 15%; animation-delay: -2.5s; }
+.hh3 { bottom: 20%; left: 40%; animation-delay: -4s; }
+.h-star {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.5;
+  animation: float 4s ease-in-out infinite;
+}
+.hs1 { top: 35%; left: 20%; animation-delay: -0.5s; }
+.hs2 { top: 25%; right: 25%; animation-delay: -3s; }
+.hero-inner { position: relative; z-index: 1; }
+
+/* SCROLL CUE */
+.scroll-cue {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  z-index: 1;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent-strong), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%, 100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
+
+/* BRAND DOT */
+.brand-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* LIGHT FLASH (leaflet) */
+.light-flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.leaflet-open .light-flash { opacity: 1; transition: opacity 0.1s 0.8s; }
+
+/* FINAL BACKGROUND */
+.final-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.fg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.3;
+}
+.fg1 { width: 300px; height: 300px; background: var(--accent); top: -80px; left: -60px; }
+.fg2 { width: 250px; height: 250px; background: #ffe080; bottom: -60px; right: -40px; }
+.fg3 { width: 200px; height: 200px; background: #b8f0d0; top: 30%; right: 10%; }
+.final-inner { position: relative; z-index: 1; }
+
+/* FUN SECTION CONTENT */
+.fun-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 1.5rem;
+}
+.click-hint {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-top: 1rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* QUESTIONS EXTRA */
+.q-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+.q-thanks {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-soft);
+  padding: 1rem;
+  font-style: italic;
+}
+.s-label {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+/* HERO LAYOUT (two column on desktop) */
+@media (min-width: 700px) {
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+}
