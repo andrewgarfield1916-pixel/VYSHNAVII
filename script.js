@@ -1,6 +1,6 @@
 // CONFIG
 const DOB_CORRECT = "25/02/2006";
-// ⚠️ IMPORTANT: Double-check that this is the EXACT URL from your most recent "New Version" deployment in Apps Script!
+// Apps Script URL is no longer needed for the questions, but keeping in case you use it elsewhere
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyFzJCRwLnGOZcz0JDNkzeNsdWth6CFDhUbi58BDryOTMID_-dLQwsrm9Pi5hNT03xCmQ/exec";
 
 // DOM ELEMENTS
@@ -98,7 +98,7 @@ function initScrollReveal() {
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
 
-// --- STEPPER & GOOGLE SHEETS LOGIC ---
+// --- STEPPER & GOOGLE FORMS LOGIC ---
 function initStepper() {
     let currentStep = 1;
     const totalSteps = 5;
@@ -108,42 +108,41 @@ function initStepper() {
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
 
-    // Object to store all answers before final submission
+    // Just for local use if you ever want it
     const finalResponses = {
         timestamp: new Date().toISOString(),
         device: navigator.userAgent
     };
 
+    // Your Google Form URL
+    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdYMP43Ef4mRl65cLETR1HWTTmak1VVBDJnP5Vi7LiZDT9WqQ/viewform?usp=publish-editor";
+
     function updateStep() {
         cards.forEach(c => c.classList.remove("q-active"));
         dots.forEach(d => d.classList.remove("active-dot"));
+
         const activeCard = document.querySelector(`.q-card[data-step="${currentStep}"]`);
         if (activeCard) activeCard.classList.add("q-active");
+
         if (dots[currentStep - 1]) dots[currentStep - 1].classList.add("active-dot");
+
         if (label) label.textContent = `Question ${currentStep} of ${totalSteps}`;
+
         if (prevBtn) prevBtn.disabled = currentStep === 1;
         if (nextBtn) nextBtn.textContent = currentStep === totalSteps ? "Finish ✨" : "Next →";
     }
 
-    async function submitToSheets() {
-        try {
-            // FIX: Added await and changed Content-Type to text/plain to bypass CORS
-            await fetch(SHEETS_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(finalResponses)
-            });
-        } catch (e) {
-            console.error("Submission failed", e);
-        }
+    function openForm() {
+        window.open(FORM_URL, "_blank");
     }
 
     if (nextBtn) {
         nextBtn.addEventListener("click", async () => {
             const currentCard = document.querySelector(`.q-card[data-step="${currentStep}"]`);
             const textarea = currentCard.querySelector("textarea");
-            const selected = Array.from(currentCard.querySelectorAll(".chip.selected")).map(c => c.textContent).join(", ");
+            const selected = Array.from(currentCard.querySelectorAll(".chip.selected"))
+                .map(c => c.textContent)
+                .join(", ");
 
             if (!textarea.value.trim()) {
                 textarea.classList.add("shake-it");
@@ -152,7 +151,6 @@ function initStepper() {
                 return;
             }
 
-            // Map current step to specific sheet keys provided by user
             const stepMap = {
                 1: { q: "Q1 - What she likes", opt: "Q1 Options" },
                 2: { q: "Q2 - When I'm annoying", opt: "Q2 Options" },
@@ -169,10 +167,12 @@ function initStepper() {
                 currentStep++;
                 updateStep();
             } else {
-                await submitToSheets();
+                openForm();
                 nextBtn.parentElement.innerHTML = `
                     <div class="reveal revealed">
-                        <p class="thanks-msg">Thanks for being honest. Let's keep going. 👇</p>
+                        <p class="thanks-msg">
+                            Last tiny thing: a secret form just opened in a new tab. Fill that too? 🫶
+                        </p>
                     </div>
                 `;
             }
@@ -202,6 +202,9 @@ function initStepper() {
             });
         });
     });
+
+    // Initialize first step
+    updateStep();
 }
 
 function initFinalLock() {
