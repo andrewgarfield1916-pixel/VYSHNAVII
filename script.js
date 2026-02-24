@@ -1,5 +1,6 @@
 // CONFIG
 const DOB_CORRECT = "25/02/2006";
+// ⚠️ IMPORTANT: Double-check that this is the EXACT URL from your most recent "New Version" deployment in Apps Script!
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxUs-tGeS05lusiQLnnkwLWkTFtNooKPxOICNYtk7bMmmqRQNhqwOIHpoW9MziPXwfgxQ/exec";
 
 // DOM ELEMENTS
@@ -126,10 +127,11 @@ function initStepper() {
 
     async function submitToSheets() {
         try {
-            fetch(SHEETS_URL, {
+            // FIX: Added await and changed Content-Type to text/plain to bypass CORS
+            await fetch(SHEETS_URL, {
                 method: "POST",
                 mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify(finalResponses)
             });
         } catch (e) {
