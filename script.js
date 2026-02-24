@@ -1,6 +1,6 @@
 // CONFIG
 const DOB_CORRECT = "25/02/2006";
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzRCRd3jPN3yRCPIk--Nu00Q0diksAv6Un6Loybsy9Amey3wAeVKJS9L16K8ZiT-P2jTw/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbw_tCiiNy9HvuIAtXGh8XK3LFD7un8PpLUXcGST9pcdy9SnwZ5Sp2pe-4Vu8VzPfM9L0w/exec";
 
 // DOM ELEMENTS
 const lockScreen = document.getElementById("lock-screen");
