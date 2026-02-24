@@ -164,7 +164,7 @@ function initStepper() {
         currentStep++;
         updateStep();
       } else {
-        nextBtn.parentElement.innerHTML = '<div class="q-thanks">Thanks for being honest. Let\'s keep going. 👇</div>';
+                        nextBtn.parentElement.innerHTML = "<div class='q-thanks'>Thanks for being honest. Let's keep going. 👇</div>";
       }
     });
   }
