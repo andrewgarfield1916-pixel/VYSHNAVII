@@ -14,7 +14,7 @@
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- ADMIN PANEL (Hidden by default) -->
+    <!-- ADMIN PANEL -->
     <div id="admin-panel" class="admin-hidden">
         <div class="admin-card">
             <div class="admin-header">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <!-- LOCK SCREEN -->
+    <!-- MAIN LOCK SCREEN -->
     <div id="lock-screen">
         <div class="lock-bg">
             <div class="orb orb-1"></div>
@@ -38,43 +38,41 @@
         <div class="lock-card">
             <div class="lock-icon">🎁</div>
             <h1 class="lock-title">Do you really want to see what's inside?</h1>
-            <p class="lock-sub">Enter my <strong class="accent-text">PUTTINA ROJU</strong> to continue.</p>
+            <p class="lock-sub">Enter my <strong>PUTTINA ROJU</strong> to continue.</p>
             <div class="input-wrap">
                 <input id="dob-input" type="text" autocomplete="off" placeholder="DD/MM/YYYY" maxlength="10" />
             </div>
             <button id="unlock-btn">Unlock 💌</button>
-            <p id="lock-msg" class="lock-msg"></p>
+            <p id="lock-msg" style="color: #ff5f7a; margin-top: 10px; font-size: 0.85rem;"></p>
         </div>
     </div>
 
-    <!-- LEAFLET TRANSITION -->
+    <!-- OPENING LEAFLET -->
     <div id="leaflet" class="leaflet-hidden">
         <div class="panel panel-left"></div>
         <div class="panel panel-right"></div>
         <div class="light-flash"></div>
     </div>
 
-    <!-- MAIN EXPERIENCE -->
+    <!-- MAIN CONTENT -->
     <div id="main" class="main-hidden">
-        <nav class="topbar">
-            <div class="brand-name" id="admin-trigger"><span class="brand-dot"></span>vyshnavii.birthday</div>
-            <button class="audio-btn" id="audio-btn">🔇</button>
-        </nav>
-
         <section class="hero">
             <div class="hero-bg">
                 <div class="h-orb h-orb1"></div>
                 <div class="h-orb h-orb2"></div>
                 <span class="h-heart hh1">💗</span>
                 <span class="h-heart hh2">💗</span>
-                <span class="h-heart hh3">💗</span>
-                <span class="h-star hs1">✨</span>
-                <span class="h-star hs2">🌟</span>
+                <span class="h-heart hh3">✨</span>
+                <span class="h-star hs1">🌟</span>
             </div>
-            <div class="hero-inner reveal">
-                <div class="hero-content">
+            <div class="topbar">
+                <div class="brand-name"><span class="brand-dot"></span>vyshnavii.birthday</div>
+                <button id="audio-btn" class="audio-btn">🔇</button>
+            </div>
+            <div class="hero-inner">
+                <div class="hero-text">
                     <span class="eyebrow">Today is quietly special ✨</span>
-                    <h1 class="hero-h1">Happy Birthday,<br><i>Vyshnavii</i> 🎂</h1>
+                    <h1 class="hero-h1">Happy Birthday,<br><em>Vyshnavii</em> 🎂</h1>
                     <p class="hero-p">This little corner of the internet exists only because you do.</p>
                     <p class="hero-p2">Built out of late night talks, random conversations, and all those small everyday moments that somehow started to matter.</p>
                 </div>
@@ -88,7 +86,7 @@
             </div>
         </section>
 
-        <section class="story reveal">
+        <section class="reveal">
             <div class="inner">
                 <h2 class="sec-h">Little things I never say properly</h2>
                 <p class="sec-sub">Not dramatic, not poetic. Just honest.</p>
@@ -121,14 +119,14 @@
             </div>
         </section>
 
-        <section class="memories reveal">
+        <section class="reveal">
             <div class="inner">
                 <h2 class="sec-h">Tiny snapshots in my head</h2>
                 <p class="sec-sub">Replace these with real photos later. They hold the shape of the memory until then.</p>
                 <div class="mem-grid">
                     <div class="mem-card">
                         <div class="mem-img mem-placeholder" style="--ph1:#ff9fb3; --ph2:#ff5f7a;">
-                            💕
+                            <span>💕</span>
                             <span class="ph-label">memory 01</span>
                         </div>
                         <div class="mem-body">
@@ -137,8 +135,8 @@
                         </div>
                     </div>
                     <div class="mem-card">
-                        <div class="mem-img mem-placeholder" style="--ph1:#a5c8ff; --ph2:#4d91ff;">
-                            😂
+                        <div class="mem-img mem-placeholder" style="--ph1:#a5c8ff; --ph2:#70a1ff;">
+                            <span>😂</span>
                             <span class="ph-label">memory 02</span>
                         </div>
                         <div class="mem-body">
@@ -147,8 +145,8 @@
                         </div>
                     </div>
                     <div class="mem-card">
-                        <div class="mem-img mem-placeholder" style="--ph1:#ffe69d; --ph2:#ffcc33;">
-                            ✨
+                        <div class="mem-img mem-placeholder" style="--ph1:#ffe69d; --ph2:#ffd32a;">
+                            <span>✨</span>
                             <span class="ph-label">memory 03</span>
                         </div>
                         <div class="mem-body">
@@ -160,83 +158,103 @@
             </div>
         </section>
 
-        <section class="questions reveal" id="questions-section">
+        <!-- QUESTIONS SECTION -->
+        <section class="reveal">
             <div class="inner">
                 <h2 class="sec-h">Before you continue…</h2>
                 <p class="sec-sub">answer a few things honestly 😌</p>
                 
                 <div class="stepper">
                     <div class="step-top">
-                        <span id="step-label">Question 1 of 4</span>
-                        <div class="dots-wrap">
+                        <span id="step-label">Question 1 of 5</span>
+                        <div class="dots-container">
                             <span class="dot active-dot"></span>
                             <span class="dot"></span>
                             <span class="dot"></span>
                             <span class="dot"></span>
+                            <span class="dot"></span>
                         </div>
                     </div>
 
-                    <!-- Q1 -->
+                    <!-- QUESTION 1 -->
                     <div class="q-card q-active" data-step="1">
                         <h3>What’s one thing you actually like about me?</h3>
+                        <span class="q-label">Pick as many as you want</span>
                         <div class="chips" data-type="multi">
-                            <div class="chip">Humor 😌</div>
-                            <div class="chip">Random midnight talks</div>
-                            <div class="chip">Annoying but somehow fun</div>
-                            <div class="chip">Comfort vibe</div>
-                            <div class="chip">Listening skills</div>
-                            <div class="chip">Overthinking partner</div>
-                            <div class="chip">Unexpected support</div>
-                            <div class="chip">Food discussions 🍰</div>
+                            <button class="chip">Humor 😌</button>
+                            <button class="chip">Random midnight talks</button>
+                            <button class="chip">Annoying but somehow fun</button>
+                            <button class="chip">Comfort vibe</button>
+                            <button class="chip">Listening skills</button>
+                            <button class="chip">Overthinking partner</button>
+                            <button class="chip">Unexpected support</button>
+                            <button class="chip">Food discussions 🍰</button>
                         </div>
-                        <textarea placeholder="say it properly here…"></textarea>
+                        <textarea rows="3" placeholder="say it properly here…"></textarea>
                     </div>
 
-                    <!-- Q2 -->
+                    <!-- QUESTION 2 -->
                     <div class="q-card" data-step="2">
                         <h3>When do you feel I’m most annoying?</h3>
+                        <span class="q-label">be honest… I can take it</span>
                         <div class="chips" data-type="multi">
-                            <div class="chip">When I overthink</div>
-                            <div class="chip">When I ask too many questions</div>
-                            <div class="chip">When I tease too much</div>
-                            <div class="chip">When I act dramatic 😒</div>
-                            <div class="chip">When I disappear suddenly</div>
-                            <div class="chip">Never (obviously 😌)</div>
+                            <button class="chip">When I overthink</button>
+                            <button class="chip">When I ask too many questions</button>
+                            <button class="chip">When I tease too much</button>
+                            <button class="chip">When I act dramatic 😒</button>
+                            <button class="chip">When I disappear suddenly</button>
+                            <button class="chip">Never (obviously 😌)</button>
                         </div>
-                        <textarea placeholder="be honest… I can take it"></textarea>
+                        <textarea rows="3" placeholder="be honest…"></textarea>
                     </div>
 
-                    <!-- Q3 -->
+                    <!-- QUESTION 3 -->
                     <div class="q-card" data-step="3">
                         <h3>Which version of me do you like more?</h3>
-                        <div class="chips" data-type="single">
-                            <div class="chip">Funny me</div>
-                            <div class="chip">Serious me</div>
-                            <div class="chip">Caring me</div>
-                            <div class="chip">Sleepy late-night me</div>
-                            <div class="chip">Motivational lecture version 😂</div>
-                            <div class="chip">Food obsessed version</div>
+                        <span class="q-label">explain your answer…</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">Funny me</button>
+                            <button class="chip">Serious me</button>
+                            <button class="chip">Caring me</button>
+                            <button class="chip">Sleepy late-night me</button>
+                            <button class="chip">Motivational lecture version 😂</button>
+                            <button class="chip">Food obsessed version</button>
                         </div>
-                        <textarea placeholder="explain your answer…"></textarea>
+                        <textarea rows="3" placeholder="explain why…"></textarea>
                     </div>
 
-                    <!-- Q4 -->
+                    <!-- QUESTION 4 -->
                     <div class="q-card" data-step="4">
                         <h3>Our conversations feel like…</h3>
-                        <div class="chips" data-type="single">
-                            <div class="chip">Random chaos</div>
-                            <div class="chip">Therapy session</div>
-                            <div class="chip">Comedy show</div>
-                            <div class="chip">Safe place</div>
-                            <div class="chip">Timepass that became habit</div>
-                            <div class="chip">Something I wait for</div>
+                        <span class="q-label">what does it actually feel like?</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">Random chaos</button>
+                            <button class="chip">Therapy session</button>
+                            <button class="chip">Comedy show</button>
+                            <button class="chip">Safe place</button>
+                            <button class="chip">Timepass that became habit</button>
+                            <button class="chip">Something I wait for</button>
                         </div>
-                        <textarea placeholder="what does it actually feel like?"></textarea>
+                        <textarea rows="3" placeholder="what does it actually feel like?"></textarea>
+                    </div>
+
+                    <!-- QUESTION 5 (The Hidden Emotional One) -->
+                    <div class="q-card" data-step="5">
+                        <h3>If I disappeared for a week, what would you miss most?</h3>
+                        <span class="q-label">just one tiny honest thing</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">The random pings</button>
+                            <button class="chip">The teasing</button>
+                            <button class="chip">The long rants</button>
+                            <button class="chip">The comfort</button>
+                            <button class="chip">Everything (too much silence 😌)</button>
+                        </div>
+                        <textarea rows="3" placeholder="be real here..."></textarea>
                     </div>
 
                     <div class="step-nav">
-                        <button class="nav-btn btn-ghost" id="prev-btn" disabled>← Back</button>
-                        <button class="nav-btn btn-primary" id="next-btn">Next →</button>
+                        <button id="prev-btn" class="nav-btn btn-ghost" disabled>← Back</button>
+                        <button id="next-btn" class="nav-btn btn-primary">Next →</button>
                     </div>
                 </div>
             </div>
@@ -247,26 +265,38 @@
             <div class="fun-content">
                 <h2 class="sec-h">Tiny reactions, big chaos 🎉</h2>
                 <p class="sec-sub">Tap anywhere here. Imagine this is our chat but the reactions escape into the screen.</p>
-                <div class="panda-box" style="font-size: 4rem; margin-top: 1rem;">🐼</div>
+                <div class="panda-box" style="font-size: 3rem; cursor: pointer;">🐼</div>
                 <p class="click-hint">Click / tap anywhere 👇</p>
             </div>
         </section>
 
-        <section class="final reveal final-confetti-trigger">
+        <!-- FINAL LOCK SCREEN -->
+        <section id="final-lock" class="reveal">
+            <div class="inner final-lock-card">
+                <h2 class="sec-h">One last thing 👀</h2>
+                <p class="sec-sub">If you really made it till here, unlock the final surprise.</p>
+                <label class="dob-label" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Enter my birthday date</label>
+                <input type="text" id="final-dob-input" placeholder="DD/MM/YYYY" autocomplete="off" class="dob-input" />
+                <button id="final-dob-btn" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Unlock</button>
+                <p id="final-dob-hint" class="hint-text"></p>
+            </div>
+        </section>
+
+        <!-- FINAL THANK YOU (Hidden) -->
+        <section id="final-thanks" class="reveal final" style="display: none;">
             <div class="final-bg">
                 <div class="fg fg1"></div>
                 <div class="fg fg2"></div>
                 <div class="fg fg3"></div>
             </div>
-            <div class="final-inner">
-                <h2 class="sec-h">And one last thing…</h2>
+            <div class="inner final-inner">
+                <h2 class="sec-h">Thank you for coming here 🫶</h2>
                 <div class="f-lines">
-                    <p class="f-line">Thank you for coming into my life, Vyshnavii.</p>
                     <p class="f-line">Some conversations become habits.</p>
                     <p class="f-line">Some people become comfort.</p>
                     <p class="f-line">And somewhere along the way, you became both.</p>
                 </div>
-                <p class="f-end">Happy Birthday 💛</p>
+                <p class="f-end final-confetti-trigger">Happy Birthday 💛</p>
             </div>
         </section>
     </div>
