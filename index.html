@@ -9,167 +9,161 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <!-- BACKGROUND MUSIC -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- ENTRY GATEWAY -->
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel" class="admin-hidden">
+        <div class="admin-card">
+            <div class="admin-header">
+                <h3>Vyshnavii's Responses 📊</h3>
+                <button id="close-admin">×</button>
+            </div>
+            <div id="responses-container">
+                <p class="admin-loading">Fetching the latest honesties... 🐼</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN LOCK SCREEN -->
     <div id="lock-screen">
         <div class="lock-bg">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
         </div>
         <div class="lock-card">
-            <h1 class="lock-title">ENTER YOUR "PUTTINA ROJU" TO PROCEED</h1>
+            <div class="lock-icon">🎁</div>
+            <h1 class="lock-title">Do you really want to see what's inside?</h1>
+            <p class="lock-sub">Enter my <strong>PUTTINA ROJU</strong> to continue.</p>
             <div class="input-wrap">
                 <input id="dob-input" type="text" autocomplete="off" placeholder="DD/MM/YYYY" maxlength="10" />
             </div>
             <button id="unlock-btn">Unlock 💌</button>
-            <p id="lock-msg"></p>
+            <p id="lock-msg" style="color: #ff5f7a; margin-top: 10px; font-size: 0.85rem;"></p>
         </div>
     </div>
 
-    <!-- UNFOLDING LEAFLET -->
+    <!-- OPENING LEAFLET -->
     <div id="leaflet" class="leaflet-hidden">
         <div class="panel panel-left"></div>
         <div class="panel panel-right"></div>
         <div class="light-flash"></div>
     </div>
 
-    <!-- MAIN IMMERSIVE CONTAINER -->
+    <!-- MAIN CONTENT -->
     <div id="main" class="main-hidden">
-        <div class="topbar">
-            <div class="brand-name"><span class="brand-dot"></span>vyshnavii.birthday</div>
-            <button id="audio-btn" class="audio-btn">🔇</button>
-        </div>
-
-        <!-- HERO: CINEMATIC START -->
-        <section class="hero cinematic">
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="h-orb h-orb1"></div>
+                <div class="h-orb h-orb2"></div>
+                <span class="h-heart hh1">💗</span>
+                <span class="h-heart hh2">💗</span>
+                <span class="h-heart hh3">✨</span>
+                <span class="h-star hs1">🌟</span>
+            </div>
+            <div class="topbar">
+                <div class="brand-name"><span class="brand-dot"></span>vyshnavii.birthday</div>
+                <button id="audio-btn" class="audio-btn">🔇</button>
+            </div>
             <div class="hero-inner">
-                <span class="eyebrow">A Digital Recreation of Everyday Conversations</span>
-                <h1 class="hero-h1">Happy Birthday,<br><em>Vyshnavii</em> 🎂</h1>
-                <p class="hero-p">This exists only because you do.</p>
+                <div class="hero-text">
+                    <span class="eyebrow">Today is quietly special ✨</span>
+                    <h1 class="hero-h1">Happy Birthday,<br><em>Vyshnavii</em> 🎂</h1>
+                    <p class="hero-p">This little corner of the internet exists only because you do.</p>
+                    <p class="hero-p2">Built out of late night talks, random conversations, and all those small everyday moments that somehow started to matter.</p>
+                </div>
+                <div class="hero-visual">
+                    <div class="panda-box">🐼</div>
+                </div>
             </div>
             <div class="scroll-cue">
+                <span>Scroll to wander through us</span>
                 <div class="scroll-line"></div>
             </div>
         </section>
 
-        <!-- SECTION 1: NO REASON CONVERSATIONS -->
-        <section class="reveal chat-story">
+        <section class="reveal">
             <div class="inner">
-                <p class="story-text">Some conversations started without any reason.</p>
-                <p class="story-text-sub">Mostly with:</p>
-                <h2 class="sec-h large">"Em chestunav?"</h2>
-                <div class="chat-bubbles" id="bubble-container-1">
-                    <!-- Bubbles injected by JS -->
-                </div>
-                <p class="story-text-end">Maybe some conversations never needed a reason.</p>
-            </div>
-        </section>
-
-        <!-- SECTION 2: CHECK-IN NOTIFICATIONS -->
-        <section class="reveal notifications">
-            <div class="inner">
-                <p class="story-text">Not big talks.</p>
-                <h2 class="sec-h">Just small check-ins.</h2>
-                <div class="notif-grid" id="notif-container">
-                    <!-- Notifications injected by JS -->
-                </div>
-                <p class="story-text-end">Maybe care sometimes looks very normal.</p>
-            </div>
-        </section>
-
-        <!-- SECTION 3: PHOTO CHAOS -->
-        <section class="reveal photo-chaos">
-            <div class="inner">
-                <h2 class="sec-h">Photos sent. Deleted. Sent again.</h2>
-                <div class="photo-container" id="photo-stack">
-                    <div class="p-frame">📸</div>
-                    <div class="p-frame">🖼️</div>
-                    <div class="p-frame">📷</div>
-                </div>
-                <p class="playful-line">Apparently the good photos are never the ones she thinks are good.</p>
-            </div>
-        </section>
-
-        <!-- SECTION 4: PROFESSIONAL TEASING -->
-        <section class="reveal teasing-cloud">
-            <div class="inner">
-                <div class="teasing-elements">
-                    <span class="t-item">Adjust ah?</span>
-                    <span class="t-item">Ewww</span>
-                    <span class="t-item">Triangle lo mayam</span>
-                    <span class="t-item">Topper language ardham kadhu</span>
-                    <span class="t-item">Nuvve ga annav</span>
-                </div>
-                <div class="caption-box">
-                    <h2 class="sec-h">Professional teasing.</h2>
-                    <p class="sec-sub">Zero conclusions. Conversation continues anyway.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: FOOD TIMELINE -->
-        <section class="reveal timeline-sec">
-            <div class="inner">
-                <h2 class="sec-h">Plans > Execution. Always.</h2>
-                <div class="timeline-wrapper">
-                    <div class="timeline">
-                        <div class="t-point" data-label="Cake discussions"></div>
-                        <div class="t-point" data-label="Ice cream talks"></div>
-                        <div class="t-point" data-label="Cravings"></div>
-                        <div class="t-point" data-label="“Thinnava?” moments"></div>
-                        <div class="t-point" data-label="Plans that never happened"></div>
+                <h2 class="sec-h">Little things I never say properly</h2>
+                <p class="sec-sub">Not dramatic, not poetic. Just honest.</p>
+                <div class="story-grid">
+                    <div class="story-card">
+                        <span class="story-num">01</span>
+                        <p>Thank you for coming into my life. Somehow, you walked in and the room felt a little different.</p>
+                    </div>
+                    <div class="story-card">
+                        <span class="story-num">02</span>
+                        <p>Some people just become important without asking for permission. You were exactly like that.</p>
+                    </div>
+                    <div class="story-card">
+                        <span class="story-num">03</span>
+                        <p>You made ordinary days feel less ordinary, just by being on the other side of a chat or a random meme.</p>
+                    </div>
+                    <div class="story-card">
+                        <span class="story-num">04</span>
+                        <p>Late night talks, half-slept replies, random updates — none of it looks special from outside. But it became my favourite kind of nothing.</p>
+                    </div>
+                    <div class="story-card">
+                        <span class="story-num">05</span>
+                        <p>You became that familiar comfort. The person I can talk to about everything and nothing at the same time.</p>
+                    </div>
+                    <div class="story-card">
+                        <span class="story-num">06</span>
+                        <p>I don't know how long life keeps things exactly like this. But I really hope this bond stays alive for a long time.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 6: LATE NIGHT MODE -->
-        <section class="reveal late-night">
-            <div class="night-overlay"></div>
+        <section class="reveal">
             <div class="inner">
-                <p class="story-text">Conversations that were supposed to end at 10…</p>
-                <h2 class="sec-h">somehow reached midnight.</h2>
-                <div class="typing-indicator"><span></span><span></span><span></span></div>
-                <div class="chat-log">
-                    <p class="log-msg">“Padukunta le”</p>
-                    <p class="log-msg">“Bye”</p>
-                    <p class="log-msg reply">→ messages continue</p>
+                <h2 class="sec-h">Tiny snapshots in my head</h2>
+                <p class="sec-sub">Replace these with real photos later. They hold the shape of the memory until then.</p>
+                <div class="mem-grid">
+                    <div class="mem-card">
+                        <div class="mem-img mem-placeholder" style="--ph1:#ff9fb3; --ph2:#ff5f7a;">
+                            <span>💕</span>
+                            <span class="ph-label">memory 01</span>
+                        </div>
+                        <div class="mem-body">
+                            <h3>That random nothing-much day</h3>
+                            <p>Looked normal to everyone else. Stayed with me because you were in it.</p>
+                        </div>
+                    </div>
+                    <div class="mem-card">
+                        <div class="mem-img mem-placeholder" style="--ph1:#a5c8ff; --ph2:#70a1ff;">
+                            <span>😂</span>
+                            <span class="ph-label">memory 02</span>
+                        </div>
+                        <div class="mem-body">
+                            <h3>The laugh I still remember</h3>
+                            <p>One silly joke and suddenly we couldn't stop. That sound never really left.</p>
+                        </div>
+                    </div>
+                    <div class="mem-card">
+                        <div class="mem-img mem-placeholder" style="--ph1:#ffe69d; --ph2:#ffd32a;">
+                            <span>✨</span>
+                            <span class="ph-label">memory 03</span>
+                        </div>
+                        <div class="mem-body">
+                            <h3>The quiet in-between</h3>
+                            <p>No big event. Just the comfort of knowing you were there. That was enough.</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="story-text-end">Some good nights take time to end.</p>
             </div>
         </section>
 
-        <!-- SECTION 8: INSIDE JOKES -->
-        <section class="reveal jokes-grid">
+        <!-- QUESTIONS SECTION -->
+        <section class="reveal">
             <div class="inner">
-                <div class="joke-cards">
-                    <div class="j-card">JS confusion</div>
-                    <div class="j-card">diagrams</div>
-                    <div class="j-card">record writing</div>
-                    <div class="j-card">topper jokes</div>
-                    <div class="j-card">explaining confusion repeatedly</div>
-                </div>
-                <div class="caption-box">
-                    <p class="sec-sub">Half the conversations were confusion.<br>The other half was explaining the confusion.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 9: INTERACTIVE COUNTER -->
-        <section class="reveal counter-sec">
-            <div class="inner">
-                <p class="sec-sub">How many times did we say “Em chestunav?”</p>
-                <div id="em-counter" class="big-counter">0</div>
-                <button id="counter-trigger" class="btn-primary">Calculate randomness</button>
-            </div>
-        </section>
-
-        <!-- QUESTIONS: PREMIUM UPGRADE -->
-        <section class="reveal questions-premium">
-            <div class="inner">
+                <h2 class="sec-h">Before you continue…</h2>
+                <p class="sec-sub">answer a few things honestly 😌</p>
+                
                 <div class="stepper">
                     <div class="step-top">
                         <span id="step-label">Question 1 of 5</span>
@@ -182,18 +176,82 @@
                         </div>
                     </div>
 
+                    <!-- QUESTION 1 -->
                     <div class="q-card q-active" data-step="1">
                         <h3>What’s one thing you actually like about me?</h3>
+                        <span class="q-label">Pick as many as you want</span>
                         <div class="chips" data-type="multi">
                             <button class="chip">Humor 😌</button>
                             <button class="chip">Random midnight talks</button>
                             <button class="chip">Annoying but somehow fun</button>
                             <button class="chip">Comfort vibe</button>
                             <button class="chip">Listening skills</button>
+                            <button class="chip">Overthinking partner</button>
+                            <button class="chip">Unexpected support</button>
+                            <button class="chip">Food discussions 🍰</button>
                         </div>
                         <textarea rows="3" placeholder="say it properly here…"></textarea>
                     </div>
-                    <!-- Other Qs same as before, JS handles dynamic content if needed -->
+
+                    <!-- QUESTION 2 -->
+                    <div class="q-card" data-step="2">
+                        <h3>When do you feel I’m most annoying?</h3>
+                        <span class="q-label">be honest… I can take it</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">When I overthink</button>
+                            <button class="chip">When I ask too many questions</button>
+                            <button class="chip">When I tease too much</button>
+                            <button class="chip">When I act dramatic 😒</button>
+                            <button class="chip">When I disappear suddenly</button>
+                            <button class="chip">Never (obviously 😌)</button>
+                        </div>
+                        <textarea rows="3" placeholder="be honest…"></textarea>
+                    </div>
+
+                    <!-- QUESTION 3 -->
+                    <div class="q-card" data-step="3">
+                        <h3>Which version of me do you like more?</h3>
+                        <span class="q-label">explain your answer…</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">Funny me</button>
+                            <button class="chip">Serious me</button>
+                            <button class="chip">Caring me</button>
+                            <button class="chip">Sleepy late-night me</button>
+                            <button class="chip">Motivational lecture version 😂</button>
+                            <button class="chip">Food obsessed version</button>
+                        </div>
+                        <textarea rows="3" placeholder="explain why…"></textarea>
+                    </div>
+
+                    <!-- QUESTION 4 -->
+                    <div class="q-card" data-step="4">
+                        <h3>Our conversations feel like…</h3>
+                        <span class="q-label">what does it actually feel like?</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">Random chaos</button>
+                            <button class="chip">Therapy session</button>
+                            <button class="chip">Comedy show</button>
+                            <button class="chip">Safe place</button>
+                            <button class="chip">Timepass that became habit</button>
+                            <button class="chip">Something I wait for</button>
+                        </div>
+                        <textarea rows="3" placeholder="what does it actually feel like?"></textarea>
+                    </div>
+
+                    <!-- QUESTION 5 (The Hidden Emotional One) -->
+                    <div class="q-card" data-step="5">
+                        <h3>If I disappeared for a week, what would you miss most?</h3>
+                        <span class="q-label">just one tiny honest thing</span>
+                        <div class="chips" data-type="multi">
+                            <button class="chip">The random pings</button>
+                            <button class="chip">The teasing</button>
+                            <button class="chip">The long rants</button>
+                            <button class="chip">The comfort</button>
+                            <button class="chip">Everything (too much silence 😌)</button>
+                        </div>
+                        <textarea rows="3" placeholder="be real here..."></textarea>
+                    </div>
+
                     <div class="step-nav">
                         <button id="prev-btn" class="nav-btn btn-ghost" disabled>← Back</button>
                         <button id="next-btn" class="nav-btn btn-primary">Next →</button>
@@ -202,28 +260,49 @@
             </div>
         </section>
 
-        <!-- FINAL GATE -->
-        <section id="final-lock" class="reveal">
-            <div class="inner final-lock-card">
-                <h2 class="sec-h">Do you really want to see what’s inside?</h2>
-                <p class="sec-sub">Unlock the final word.</p>
-                <label class="dob-label">Enter MY PUTTINA ROJU</label>
-                <input type="text" id="final-dob-input" placeholder="29/09/2005" class="dob-input" />
-                <button id="final-dob-btn" class="btn-primary">Unlock</button>
-                <p id="final-dob-hint"></p>
+        <section class="fun reveal">
+            <div id="fun-canvas-container"></div>
+            <div class="fun-content">
+                <h2 class="sec-h">Tiny reactions, big chaos 🎉</h2>
+                <p class="sec-sub">Tap anywhere here. Imagine this is our chat but the reactions escape into the screen.</p>
+                <div class="panda-box" style="font-size: 3rem; cursor: pointer;">🐼</div>
+                <p class="click-hint">Click / tap anywhere 👇</p>
             </div>
         </section>
 
-        <!-- FINAL THANK YOU -->
-        <section id="final-thanks" class="reveal final-immersive" style="display: none;">
-            <div class="inner">
-                <h2 class="sec-h">Thank you for being part of my everyday conversations.</h2>
-                <p class="f-end">And yeah… let’s keep this bond alive for a long time.</p>
+        <!-- FINAL LOCK SCREEN -->
+        <section id="final-lock" class="reveal">
+            <div class="inner final-lock-card">
+                <h2 class="sec-h">One last thing 👀</h2>
+                <p class="sec-sub">If you really made it till here, unlock the final surprise.</p>
+                <label class="dob-label" style="display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem;">Enter my birthday date</label>
+                <input type="text" id="final-dob-input" placeholder="DD/MM/YYYY" autocomplete="off" class="dob-input" />
+                <button id="final-dob-btn" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Unlock</button>
+                <p id="final-dob-hint" class="hint-text"></p>
+            </div>
+        </section>
+
+        <!-- FINAL THANK YOU (Hidden) -->
+        <section id="final-thanks" class="reveal final" style="display: none;">
+            <div class="final-bg">
+                <div class="fg fg1"></div>
+                <div class="fg fg2"></div>
+                <div class="fg fg3"></div>
+            </div>
+            <div class="inner final-inner">
+                <h2 class="sec-h">Thank you for coming here 🫶</h2>
+                <div class="f-lines">
+                    <p class="f-line">Some conversations become habits.</p>
+                    <p class="f-line">Some people become comfort.</p>
+                    <p class="f-line">And somewhere along the way, you became both.</p>
+                </div>
+                <p class="f-end final-confetti-trigger">Happy Birthday 💛</p>
             </div>
         </section>
     </div>
 
     <canvas id="c-canvas"></canvas>
+
     <script src="script.js"></script>
 </body>
 </html>
