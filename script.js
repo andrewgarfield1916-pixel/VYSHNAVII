@@ -1,15 +1,14 @@
 // CONFIG
 const DOB_CORRECT = "25/02/2006";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzRCRd3jPN3yRCPIk--Nu00Q0diksAv6Un6Loybsy9Amey3wAeVKJS9L16K8ZiT-P2jTw/exec";
 
 // DOM ELEMENTS
 const lockScreen = document.getElementById("lock-screen");
 const dobInput = document.getElementById("dob-input");
 const unlockBtn = document.getElementById("unlock-btn");
 const lockMsg = document.getElementById("lock-msg");
-
 const leaflet = document.getElementById("leaflet");
 const mainExp = document.getElementById("main");
-
 const audioBtn = document.getElementById("audio-btn");
 const bgMusic = document.getElementById("bg-music");
 
@@ -32,8 +31,8 @@ if (unlockBtn) {
             unlockExperience();
         } else {
             lockMsg.textContent = "That's not it. Try again? 🥺";
-            dobInput.classList.add("shake");
-            setTimeout(() => dobInput.classList.remove("shake"), 500);
+            dobInput.classList.add("shake-it");
+            setTimeout(() => dobInput.classList.remove("shake-it"), 500);
         }
     });
 }
@@ -97,8 +96,10 @@ function initScrollReveal() {
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
 
+// --- STEPPER & GOOGLE SHEETS LOGIC ---
 function initStepper() {
     let currentStep = 1;
+    const totalSteps = 4;
     const cards = document.querySelectorAll(".q-card");
     const dots = document.querySelectorAll(".dot");
     const label = document.getElementById("step-label");
@@ -108,21 +109,62 @@ function initStepper() {
     function updateStep() {
         cards.forEach(c => c.classList.remove("q-active"));
         dots.forEach(d => d.classList.remove("active-dot"));
+        
         const activeCard = document.querySelector(`.q-card[data-step="${currentStep}"]`);
         if (activeCard) activeCard.classList.add("q-active");
         if (dots[currentStep - 1]) dots[currentStep - 1].classList.add("active-dot");
-        if (label) label.textContent = `Question ${currentStep} of 3`;
+        
+        if (label) label.textContent = `Question ${currentStep} of ${totalSteps}`;
         if (prevBtn) prevBtn.disabled = currentStep === 1;
-        if (nextBtn) nextBtn.textContent = currentStep === 3 ? "Finish ✨" : "Next →";
+        if (nextBtn) nextBtn.textContent = currentStep === totalSteps ? "Finish ✨" : "Next →";
+    }
+
+    async function saveResponse(step) {
+        const card = document.querySelector(`.q-card[data-step="${step}"]`);
+        const title = card.querySelector("h3").textContent;
+        const selected = Array.from(card.querySelectorAll(".chip.selected")).map(c => c.textContent);
+        const text = card.querySelector("textarea").value;
+
+        const data = {
+            question: title,
+            selectedOptions: selected,
+            typedAnswer: text,
+            timestamp: new Date().toISOString(),
+            device: navigator.userAgent
+        };
+
+        try {
+            // Background save, don't wait for it to move UI
+            fetch(SHEETS_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+        } catch (e) {
+            console.error("Save failed", e);
+        }
     }
 
     if (nextBtn) {
-        nextBtn.addEventListener("click", () => {
-            if (currentStep < 3) {
+        nextBtn.addEventListener("click", async () => {
+            const currentCard = document.querySelector(`.q-card[data-step="${currentStep}"]`);
+            const textarea = currentCard.querySelector("textarea");
+            
+            if (!textarea.value.trim()) {
+                textarea.classList.add("shake-it");
+                textarea.placeholder = "hey… don’t escape this question 😌";
+                setTimeout(() => textarea.classList.remove("shake-it"), 500);
+                return;
+            }
+
+            saveResponse(currentStep);
+
+            if (currentStep < totalSteps) {
                 currentStep++;
                 updateStep();
             } else {
-                nextBtn.parentElement.innerHTML = "<p class='q-thanks'>Thanks for being honest. Let's keep going. 👇</p>";
+                nextBtn.parentElement.innerHTML = '<p class="q-thanks">Thanks for being honest. Let\'s keep going. 👇</p>';
             }
         });
     }
@@ -136,20 +178,20 @@ function initStepper() {
         });
     }
 
-    document.querySelectorAll(".chip").forEach(chip => {
-        chip.addEventListener("click", function() {
-            this.parentElement.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
-            this.classList.add("selected");
+    // Chip Selection Logic
+    document.querySelectorAll(".chips").forEach(chipGroup => {
+        const type = chipGroup.dataset.type;
+        chipGroup.querySelectorAll(".chip").forEach(chip => {
+            chip.addEventListener("click", function() {
+                if (type === "single") {
+                    chipGroup.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+                    this.classList.add("selected");
+                } else {
+                    this.classList.toggle("selected");
+                }
+            });
         });
     });
-
-    const slider = document.getElementById("annoy-slider");
-    const numDisplay = document.getElementById("annoy-num");
-    if (slider && numDisplay) {
-        slider.addEventListener("input", (e) => {
-            numDisplay.textContent = e.target.value;
-        });
-    }
 }
 
 function initFunSection() {
@@ -179,7 +221,6 @@ if (canvas) {
     }
     window.addEventListener("resize", resize);
     resize();
-
     class Particle {
         constructor() { this.reset(); }
         reset() {
@@ -207,7 +248,6 @@ if (canvas) {
             ctx.restore();
         }
     }
-
     function startConfetti() {
         particles = [];
         for (let i = 0; i < 100; i++) particles.push(new Particle());
@@ -218,7 +258,6 @@ if (canvas) {
         }
         animate();
     }
-
     const finalTrigger = document.querySelector(".final-confetti-trigger");
     if (finalTrigger) {
         const observer = new IntersectionObserver((entries) => {
