@@ -1,7 +1,7 @@
 // CONFIG
 const DOB_CORRECT = "25/02/2006";
 // ⚠️ IMPORTANT: Double-check that this is the EXACT URL from your most recent "New Version" deployment in Apps Script!
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyQJsz0R_cwxU0LDn4ghqeIRMGXAV0gJPMbQAT8BqMkYsQPtfvAPRsRGDj63ZlXetducw/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbzOy5okccLFiDi9gp0W43oerVRUuJW9-0pmWZBymGaAWU1V7a39uwMyrv43BUbLn-I1GA/exec";
 
 // DOM ELEMENTS
 const lockScreen = document.getElementById("lock-screen");
