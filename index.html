@@ -14,6 +14,19 @@
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- ADMIN PANEL (Hidden by default) -->
+    <div id="admin-panel" class="admin-hidden">
+        <div class="admin-card">
+            <div class="admin-header">
+                <h3>Vyshnavii's Responses 📊</h3>
+                <button id="close-admin">×</button>
+            </div>
+            <div id="responses-container">
+                <p class="admin-loading">Fetching the latest honesties... 🐼</p>
+            </div>
+        </div>
+    </div>
+
     <!-- LOCK SCREEN -->
     <div id="lock-screen">
         <div class="lock-bg">
@@ -44,7 +57,7 @@
     <!-- MAIN EXPERIENCE -->
     <div id="main" class="main-hidden">
         <nav class="topbar">
-            <div class="brand-name"><span class="brand-dot"></span>vyshnavii.birthday</div>
+            <div class="brand-name" id="admin-trigger"><span class="brand-dot"></span>vyshnavii.birthday</div>
             <button class="audio-btn" id="audio-btn">🔇</button>
         </nav>
 
